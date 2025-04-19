@@ -1,0 +1,19 @@
+services:
+  tapio-pay:
+    image: ec2-15-168-3-237.ap-northeast-3.compute.amazonaws.com:5050/gogogo/tapio-pay/pay-service:latest
+    environment:
+      - MYSQL_USERNAME=${MYSQL_USERNAME}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_HOST=${MYSQL_HOST}
+      - Environment=${Environment}
+      - Port=${Port}
+      - MYSQL_URL
+      - TZ=Asia/Shanghai
+    ports:
+      - ${APP_PORT}:3000
+    networks:
+      - tapio-pay-network
+    restart: always
+networks:
+  tapio-pay-network:
+    driver: bridge
